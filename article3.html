@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Stamina — Home Workouts vs. Gym Workouts: Which is Better for Building Muscle?</title>
+    <meta name="description" content="Compare home workouts and gym workouts for muscle building. Learn which environment suits your goals and how to make the most of both." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #05070a;
+            --bg-soft: #0a0e15;
+            --panel: #0e131c;
+            --panel-2: #111826;
+            --steel-1: #eef2f6;
+            --steel-2: #aab4c0;
+            --steel-3: #5b6472;
+            --steel-dark: #20242c;
+            --ink: #e8edf3;
+            --muted: #8b96a5;
+            --cyan: #18f0ff;
+            --violet: #8b6bff;
+            --signal: #ff3b30;
+            --border: rgba(255, 255, 255, 0.09);
+            --font-display: 'Orbitron', sans-serif;
+            --font-head: 'Rajdhani', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: radial-gradient(1200px 600px at 15% -10%, rgba(139, 107, 255, 0.12), transparent 60%),
+                radial-gradient(1000px 700px at 110% 10%, rgba(24, 240, 255, 0.08), transparent 55%),
+                var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        button { font-family: inherit; cursor: pointer; }
+        ::selection { background: var(--cyan); color: #000; }
+        :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--steel-3), var(--steel-dark)); border-radius: 10px; }
+
+        .navbar {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 20px; padding: 16px clamp(18px, 4vw, 48px);
+            background: rgba(5, 7, 10, 0.72);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            border-bottom: 1px solid var(--border);
+        }
+        .brand {
+            display: flex; align-items: center; gap: 12px;
+            background: none; border: none; flex-shrink: 0;
+        }
+        .brand-mark {
+            width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
+            background: linear-gradient(140deg, rgba(24, 240, 255, 0.18), rgba(139, 107, 255, 0.18));
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.06); box-shadow: 0 0 18px rgba(24, 240, 255, 0.25); }
+        .brand-mark svg { width: 21px; height: 21px; stroke: var(--cyan); fill: none; stroke-width: 1.8; }
+        .brand-text { font-family: var(--font-display); font-weight: 900; font-size: 16px; letter-spacing: 1px; color: var(--steel-1); white-space: nowrap; }
+        .brand-text span { color: var(--cyan); }
+        .nav-links { display: flex; align-items: center; gap: 3px; }
+        .nav-link {
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 15px; border-radius: 11px;
+            font-family: var(--font-head); font-weight: 600; font-size: 13px;
+            letter-spacing: .6px; text-transform: uppercase;
+            color: var(--steel-2); background: transparent;
+            border: 1px solid transparent;
+            transition: color .25s ease, background .25s ease, border-color .25s ease, transform .2s ease;
+            white-space: nowrap;
+        }
+        .nav-link svg { width: 17px; height: 17px; stroke: var(--steel-2); fill: none; stroke-width: 1.8; transition: stroke .25s ease; flex-shrink: 0; }
+        .nav-link:hover { color: var(--ink); background: rgba(255, 255, 255, 0.06); border-color: var(--border); transform: translateY(-1px); }
+        .nav-link:hover svg { stroke: var(--cyan); }
+        .nav-link.active { color: #05070a; background: linear-gradient(120deg, var(--cyan), var(--violet)); border-color: transparent; box-shadow: 0 6px 20px rgba(24, 240, 255, 0.25); }
+        .nav-link.active svg { stroke: #05070a; }
+        .nav-toggle {
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            gap: 5px; width: 42px; height: 42px; border-radius: 10px;
+            border: 1px solid var(--border); background: rgba(255, 255, 255, 0.03); flex-shrink: 0;
+        }
+        .nav-toggle span { width: 19px; height: 2px; background: var(--steel-1); transition: transform .3s ease, opacity .3s ease; }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-scrim { display: none; position: fixed; inset: 0; background: rgba(5, 7, 10, 0.6); backdrop-filter: blur(2px); z-index: 98; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+        .nav-scrim.show { opacity: 1; pointer-events: auto; }
+
+        @media (max-width: 880px) {
+            .nav-toggle { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: 0; height: 100vh; width: min(80vw, 320px);
+                flex-direction: column; align-items: stretch; gap: 4px;
+                background: linear-gradient(160deg, var(--panel-2), var(--bg-soft));
+                border-left: 1px solid var(--border);
+                padding: 90px 18px 24px;
+                transform: translateX(100%);
+                transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+                z-index: 99; overflow-y: auto;
+            }
+            .nav-links.open { transform: translateX(0); }
+            .nav-link { justify-content: flex-start; padding: 14px 16px; font-size: 13.5px; }
+            .nav-link svg { width: 19px; height: 19px; }
+        }
+
+        .article-page {
+            max-width: 900px; margin: 0 auto; padding: 60px 6vw 80px;
+        }
+        .article-page .cat-label {
+            font-family: var(--font-head); font-size: 13px; letter-spacing: 3px;
+            color: var(--violet); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .article-page h1 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: clamp(32px, 5vw, 52px); line-height: 1.12;
+            color: var(--steel-1); margin-bottom: 18px;
+        }
+        .article-page .article-meta {
+            color: var(--muted); font-size: 14px; margin-bottom: 28px;
+            display: flex; gap: 20px; flex-wrap: wrap;
+        }
+        .article-page .article-meta span { display: flex; align-items: center; gap: 6px; }
+        .article-page .article-hero-img {
+            width: 100%; aspect-ratio: 16/7; object-fit: cover;
+            border-radius: 18px; margin-bottom: 34px;
+            background: linear-gradient(140deg, var(--panel-2), var(--steel-dark));
+            border: 1px solid var(--border);
+        }
+        .article-page .lede {
+            font-size: 19px; color: var(--steel-2); line-height: 1.85;
+            margin-bottom: 38px; border-left: 3px solid var(--cyan); padding-left: 22px;
+        }
+        .article-page h2 {
+            font-family: var(--font-head); font-weight: 700; font-size: 28px;
+            color: var(--steel-1); margin: 48px 0 18px; padding-top: 8px;
+        }
+        .article-page h3 {
+            font-family: var(--font-head); font-weight: 600; font-size: 20px;
+            color: var(--cyan); margin: 28px 0 14px;
+        }
+        .article-page p { color: #c3cbd6; font-size: 17px; margin-bottom: 18px; line-height: 1.85; }
+        .article-page ul, .article-page ol {
+            color: #c3cbd6; font-size: 17px; margin: 0 0 22px 0;
+            padding-left: 26px; line-height: 1.9;
+        }
+        .article-page li { margin-bottom: 10px; }
+        .article-page li::marker { color: var(--cyan); font-weight: 700; }
+        .article-page .data-table {
+            width: 100%; border-collapse: collapse; margin: 24px 0 30px;
+            background: var(--panel); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .article-page .data-table caption {
+            text-align: left; font-family: var(--font-head); font-size: 14px;
+            letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase;
+            padding: 14px 18px 10px;
+        }
+        .article-page .data-table th, .article-page .data-table td {
+            padding: 14px 18px; text-align: left; font-size: 15px;
+            border-top: 1px solid var(--border);
+        }
+        .article-page .data-table th {
+            background: var(--panel-2); color: var(--cyan);
+            font-family: var(--font-head); letter-spacing: 1px;
+            text-transform: uppercase; font-size: 13px;
+        }
+        .article-page .data-table td { color: #c3cbd6; }
+        .article-page .data-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.015); }
+        .article-page .conclusion-block {
+            margin-top: 44px; padding: 30px 32px; border-radius: 16px;
+            background: linear-gradient(140deg, rgba(24, 240, 255, 0.06), rgba(139, 107, 255, 0.06));
+            border: 1px solid var(--border);
+        }
+        .article-page .conclusion-block h2 { margin-top: 0; color: var(--cyan); }
+        .article-page .refs {
+            margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border);
+        }
+        .article-page .refs h3 {
+            font-family: var(--font-head); font-size: 15px; letter-spacing: 2px;
+            color: var(--muted); text-transform: uppercase; margin-bottom: 16px;
+        }
+        .article-page .refs ol { padding-left: 22px; }
+        .article-page .refs a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+        .article-page .refs a:hover { color: var(--violet); }
+        .article-nav-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 50px; padding-top: 26px; border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 16px;
+        }
+        .article-nav-footer .prev-next { display: flex; gap: 16px; }
+        .article-nav-footer a {
+            color: var(--cyan); font-family: var(--font-head); font-size: 14px;
+            letter-spacing: 1px; text-transform: uppercase; transition: color .2s ease;
+        }
+        .article-nav-footer a:hover { color: var(--violet); }
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: var(--font-head); font-size: 14px; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--cyan);
+            border: 1px solid rgba(24, 240, 255, 0.3); padding: 10px 22px;
+            border-radius: 999px; margin-bottom: 34px;
+            background: rgba(24, 240, 255, 0.05);
+            transition: background .25s ease, transform .2s ease;
+            display: inline-flex;
+        }
+        .back-btn:hover { background: rgba(24, 240, 255, 0.14); transform: translateX(-4px); }
+        .back-btn svg { width: 16px; height: 16px; stroke: currentColor; }
+
+        .site-footer {
+            border-top: 1px solid var(--border); margin-top: 40px;
+            padding: 70px 6vw 0;
+            background: linear-gradient(180deg, transparent, rgba(139, 107, 255, 0.04));
+            position: relative; overflow: hidden;
+        }
+        .footer-glow {
+            position: absolute; top: -220px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 400px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(24, 240, 255, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+        .footer-grid {
+            max-width: 1400px; margin: 0 auto; position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1.3fr;
+            gap: 40px; padding-bottom: 50px;
+        }
+        .footer-brand-col .foot-brand {
+            font-family: var(--font-display); font-size: 21px; color: var(--steel-1);
+            letter-spacing: 1px; display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+        }
+        .footer-brand-col .foot-brand span { color: var(--cyan); }
+        .footer-brand-col p {
+            color: var(--muted); font-size: 14px; max-width: 290px; margin-bottom: 22px;
+        }
+        .footer-socials { display: flex; gap: 10px; }
+        .footer-socials a {
+            width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            transition: border-color .25s ease, transform .25s ease, background .25s ease;
+        }
+        .footer-socials svg { width: 16px; height: 16px; stroke: var(--steel-2); fill: none; stroke-width: 1.8; transition: stroke .25s ease; }
+        .footer-socials a:hover { border-color: var(--cyan); transform: translateY(-3px); background: rgba(24, 240, 255, 0.08); }
+        .footer-socials a:hover svg { stroke: var(--cyan); }
+        .footer-col h4 {
+            font-family: var(--font-head); font-size: 13px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--steel-1); margin-bottom: 18px;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+        .footer-col a { color: var(--muted); font-size: 14px; transition: color .2s ease; }
+        .footer-col a:hover { color: var(--cyan); }
+        .footer-newsletter p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+        .newsletter-form { display: flex; gap: 8px; }
+        .newsletter-form input {
+            flex: 1; min-width: 0; padding: 12px 14px; border-radius: 10px;
+            border: 1px solid var(--border); background: rgba(255, 255, 255, 0.03);
+            color: var(--ink); font-family: var(--font-body); font-size: 13.5px;
+        }
+        .newsletter-form input:focus { outline: none; border-color: var(--cyan); }
+        .newsletter-form button {
+            padding: 12px 18px; border-radius: 10px; border: none; flex-shrink: 0;
+            background: linear-gradient(120deg, var(--cyan), var(--violet));
+            color: #05070a; font-family: var(--font-head); font-weight: 700;
+            font-size: 13px; letter-spacing: .5px; text-transform: uppercase;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .newsletter-form button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(24, 240, 255, 0.25); }
+        .newsletter-note { font-size: 11.5px; color: var(--steel-3); margin-top: 10px; }
+        .footer-bottom {
+            max-width: 1400px; margin: 0 auto; padding: 26px 0 34px;
+            border-top: 1px solid var(--border);
+            display: flex; flex-wrap: wrap; gap: 14px;
+            align-items: center; justify-content: space-between;
+            color: var(--muted); font-size: 13px; position: relative; z-index: 1;
+        }
+        @media (max-width: 1080px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 34px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
+            .article-page { padding: 30px 5vw 60px; }
+            .article-page .lede { font-size: 17px; padding-left: 16px; }
+            .article-page h1 { font-size: 28px; }
+        }
+        .back-to-top {
+            position: fixed; bottom: 26px; right: 26px; z-index: 90;
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(140deg, var(--cyan), var(--violet));
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 28px rgba(24, 240, 255, 0.3);
+            opacity: 0; pointer-events: none; transform: translateY(14px);
+            transition: opacity .3s ease, transform .3s ease;
+            border: none; cursor: pointer;
+        }
+        .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .back-to-top svg { width: 20px; height: 20px; stroke: #05070a; fill: none; stroke-width: 2.2; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand" aria-label="Prime Stamina — Home">
+            <span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M2 12h2M20 12h2M5 8v8M19 8v8M8 6v12M16 6v12M8 12h8"/></svg></span>
+            <span class="brand-text">PRIME <span>STAMINA</span></span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg><span class="label">Home</span></a>
+            <a href="#" class="nav-link" data-page="about"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.3-4 4-6 7-6s5.7 2 7 6"/></svg><span class="label">About</span></a>
+            <a href="#" class="nav-link" data-page="contact"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></svg><span class="label">Contact Us</span></a>
+            <a href="#" class="nav-link" data-page="mfd"><svg viewBox="0 0 24 24"><path d="M6.5 3v4M17.5 3v4M4 8.5h16M5 6h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"/></svg><span class="label">M&amp;F&nbsp;D</span></a>
+            <a href="#" class="nav-link" data-page="privacy"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z"/></svg><span class="label">Privacy Policy</span></a>
+            <a href="#" class="nav-link" data-page="terms"><svg viewBox="0 0 24 24"><path d="M7 3h8l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M9 12h6M9 16h6M9 8h3"/></svg><span class="label">Terms &amp; Conditions</span></a>
+        </div>
+        <div class="nav-scrim" id="navScrim"></div>
+    </nav>
+
+    <main class="article-page">
+        <a href="index.html" class="back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+            Back to All Articles
+        </a>
+
+        <div class="cat-label">Strength & Muscle Building</div>
+        <h1>Home Workouts vs. Gym Workouts: Which is Better for Building Muscle?</h1>
+        <div class="article-meta">
+            <span>📅 Published: July 12, 2026</span>
+            <span>⏱️ 9 min read</span>
+            <span>🏷️ Workout Environment, Training</span>
+        </div>
+
+        <img class="article-hero-img" src="ADD_IMAGE_LINK_HERE" alt="Home vs Gym Workouts" />
+
+        <p class="lede">
+            The home-versus-gym debate usually gets framed as a battle of convenience against equipment, but the real question is which environment lets you apply progressive overload consistently. Both settings can build serious muscle when programmed correctly; both can also stall progress when programmed poorly. This article compares the two honestly, covering equipment limitations, exercise selection, and how to bridge the gap if a full gym isn't accessible.
+        </p>
+
+        <h2>Equipment Access and Its Real Impact</h2>
+        <p>
+            Gyms offer machines, a wide range of dumbbells and barbells, and specialty equipment that make progressive overload straightforward — you simply move a pin or add a plate. Home setups, unless heavily invested in, plateau faster because resistance is limited to whatever equipment you own. However, the advantage of gym equipment comes with a cost: commute time, membership fees, and sometimes crowded conditions during peak hours that can disrupt the flow of a programmed session. For many people, these factors matter more than the equipment itself when it comes to long-term adherence.
+        </p>
+
+        <h2>Exercise Selection Differences</h2>
+        <p>
+            Home training leans on bodyweight and resistance-band work, which is excellent for muscular endurance and can still build muscle through higher reps and slower tempos, but has a lower ceiling for maximal strength compared to barbell training available in most gyms. Bodyweight exercises like push-ups, pull-ups, and squats can be progressed through variations — deficit push-ups, weighted pull-ups, pistol squats — but eventually reach a point where loading becomes impractical without external weight. Bands offer variable resistance that can supplement bodyweight work effectively, though they lack the precise loading increments of dumbbells or barbells.
+        </p>
+
+        <h2>Consistency — The Underrated Variable</h2>
+        <p>
+            A mediocre program performed five times a week at home outperforms a perfect program performed once a week at a gym you dread commuting to. Adherence is consistently shown to matter more than marginal equipment advantages. Studies on exercise adherence consistently show that proximity and convenience are among the strongest predictors of long-term consistency, often outweighing the quality of the exercise environment itself.
+        </p>
+        <ul>
+            <li>Home training removes commute time and membership cost barriers</li>
+            <li>Gym training removes decision fatigue with equipment already set up</li>
+            <li>Choose the environment you'll actually show up to three-plus times weekly</li>
+        </ul>
+
+        <h2>How to Bridge the Equipment Gap at Home</h2>
+        <p>
+            A well-chosen minimal setup closes most of the gap between home and gym results. The strategic investment in a few key pieces of equipment can dramatically expand your home training options without requiring a full garage gym.
+        </p>
+        <table class="data-table">
+            <caption>Minimal Home Gym Investment Priority</caption>
+            <thead>
+                <tr><th>Item</th><th>Approx. Cost</th><th>Why It Matters</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Adjustable dumbbells</td><td>$150-300</td><td>Covers most upper and lower body progressive overload</td></tr>
+                <tr><td>Resistance bands</td><td>$20-40</td><td>Adds variable resistance for pulls and accessory work</td></tr>
+                <tr><td>Pull-up bar</td><td>$25-50</td><td>Enables true vertical pulling, hard to replicate otherwise</td></tr>
+            </tbody>
+        </table>
+
+        <h2>When a Gym Membership Becomes Worth It</h2>
+        <p>
+            Once your goals shift toward heavier compound lifts — squats, deadlifts, bench press — a barbell and rack become difficult to substitute for at home, and that's the point where gym access starts to meaningfully outperform a home setup. For individuals focused on powerlifting, Olympic lifting, or maximizing absolute strength, the gym environment with its specialized equipment and safety features becomes essentially irreplaceable. For general fitness, muscle building, and health goals, however, a well-designed home program can deliver excellent results without the ongoing expense and time commitment of a gym membership.
+        </p>
+
+        <div class="conclusion-block">
+            <h2>Conclusion</h2>
+            <p>
+                Neither environment is inherently superior. Gyms offer a faster path to heavy compound strength, while home training offers unmatched consistency for people who won't reliably commute. Pick the setting that keeps you training three or more times a week, then optimize equipment from there. The best workout environment is simply the one you actually use consistently.
+            </p>
+        </div>
+
+        <div class="refs">
+            <h3>Scientific References</h3>
+            <ol>
+                <li><a href="https://www.healthline.com/health/exercise-fitness/home-workout-vs-gym" target="_blank" rel="noopener">Healthline — Home Workouts vs Gym</a></li>
+                <li><a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener">World Health Organization — Physical Activity Guidelines</a></li>
+            </ol>
+        </div>
+
+        <div class="article-nav-footer">
+            <div class="prev-next">
+                <a href="article2.html">← Previous Article</a>
+                <a href="article4.html">Next Article →</a>
+            </div>
+            <a href="index.html">⬆ Back to Categories</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-glow"></div>
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <div class="foot-brand"><span>&#9670;</span> PRIME <span>STAMINA</span></div>
+                <p>Evidence-based training, nutrition, mindset, and recovery content for a generation that trains its body and its mind together.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="m10.5 9.5 5 2.5-5 2.5Z"/></svg></a>
+                    <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+                    <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.5a3.5 3.5 0 1 1-3-3.46M14 3c.5 2.5 2 4 4.5 4.3"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul><li><a href="index.html">Home</a></li><li><a href="#">About</a></li><li><a href="#">Contact Us</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul><li><a href="#">M&amp;F Disclaimer</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Disciplines</h4>
+                <ul>
+                    <li><a href="index.html#section-strength">Strength &amp; Muscle Building</a></li>
+                    <li><a href="index.html#section-cardio">Cardiovascular Health &amp; Stamina</a></li>
+                    <li><a href="index.html#section-nutrition">Nutrition, Hydration &amp; Dietetics</a></li>
+                    <li><a href="index.html#section-recovery">Recovery, Mobility &amp; Flexibility</a></li>
+                    <li><a href="index.html#section-mindset">Mental Resilience &amp; Mindset</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-newsletter">
+                <h4>Stay Sharp</h4>
+                <p>One email a week. New guides, no noise.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="you@email.com" required aria-label="Email address">
+                    <button type="submit">Join</button>
+                </form>
+                <div class="newsletter-note">No spam. Unsubscribe anytime.</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2050 Prime Stamina Labs. All rights reserved.</span>
+            <span class="made-with">Built for the generation that trains both sides of itself</span>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinksEl = document.getElementById('navLinks');
+        const navScrim = document.getElementById('navScrim');
+        function closeMobileNav() {
+            navToggle.classList.remove('open');
+            navLinksEl.classList.remove('open');
+            navScrim.classList.remove('show');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinksEl.classList.toggle('open');
+            navToggle.classList.toggle('open', isOpen);
+            navScrim.classList.toggle('show', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+        navScrim.addEventListener('click', closeMobileNav);
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeMobileNav));
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { backToTop.classList.toggle('show', window.scrollY > 500); });
+        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("You're on the list. Welcome to Prime Stamina.");
+            e.target.reset();
+        });
+    </script>
+</body>
+          </html>
